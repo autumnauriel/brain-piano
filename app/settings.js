@@ -17,31 +17,18 @@ import {UI} from "./UI.js"
     {
       "nodes": [
         {
+          "name": "blink_both",
+          "class": "Event",
+          "params": {
+            "keycode": "Space"
+          },
+        },
+        {
           "name": "blink_left",
           "class": "Event",
           "params": {
             "keycode": "ArrowLeft"
           },
-          "ports": {
-            "keycode": {
-              "data": "Space",
-              "input": {
-                "type": "string"
-              },
-              "output": {
-                "type": null
-              }
-            },
-            "default": {
-              "data": false,
-              "input": {
-                "type": "boolean"
-              },
-              "output": {
-                "type": "boolean"
-              }
-            }
-          }
         },
         {
           "name": "blink_right",
@@ -49,115 +36,29 @@ import {UI} from "./UI.js"
           "params": {
             "keycode": "ArrowRight"
           },
-          "ports": {
-            "keycode": {
-              "data": "Space",
-              "input": {
-                "type": "string"
-              },
-              "output": {
-                "type": null
-              }
-            },
-            "default": {
-              "data": false,
-              "input": {
-                "type": "boolean"
-              },
-              "output": {
-                "type": "boolean"
-              }
-            }
-          }
         },
         {
           "name": "ui",
           "class":UI,
           "params": {},
-          "ports": {
-            "left": {
-              "output": {
-                "type": null
-              }
-            },
-            "right": {
-              "output": {
-                "type": null
-              }
-            },
-            "element": {
-              "input": {
-                "type": null
-              },
-              "output": {}
-            }
-          }
         },
         {
           "name": "document",
           "class": "DOM",
           "params": {},
-          "ports": {
-            "element": {
-              "input": {
-                "type": null
-              },
-              "output": {}
-            },
-            "opacity": {
-              "input": {
-                "type": "number"
-              },
-              "output": {
-                "type": null
-              },
-              "data": 1,
-              "min": 0,
-              "max": 1,
-              "step": 0.01
-            },
-            "containerStyle": {},
-            "setupHTML": {},
-            "parentNode": {},
-            "html": {
-              "input": {
-                "type": "HTML"
-              },
-              "output": {
-                "type": null
-              },
-              "data": "<div id='content'></div>"
-            },
-            "style": {
-              "input": {
-                "type": "CSS"
-              },
-              "output": {
-                "type": null
-              },
-              "data": ".brainsatplay-ui-container {\n\twidth: 100%;\n\theight: 100%;\n}"
-            },
-            "deinit": {
-              "input": {},
-              "output": {}
-            },
-            "responsive": {
-              "input": {},
-              "output": {
-                "type": null
-              }
-            },
-            "content": {
-              "edit": false,
-              "input": {},
-              "output": {
-                "type": null
-              }
-            }
-          }
         }
       ],
       "edges": [
+        {
+          "source": {
+            "node": "blink_both",
+            "port": "default"
+          },
+          "target": {
+            "node": "ui",
+            "port": "select"
+          }
+        },
         {
           "source": {
             "node": "blink_left",
